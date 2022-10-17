@@ -9,43 +9,44 @@ This site is intended for viewing the exchange rates of Ukrainian banks.
 Installing all dependencies
 
 ```console
-$ composer install
+ composer install
 ```
 
 Lifting containers
 
 ```console
-$ sail up -d
+ sail up -d
 ```
 
 Application of migrations
 
 ```console
-$ sail artisan migrate
+ sail artisan migrate
 ```
 
 Installing all dependencies node
 
 ```console
-$ sail npm install
+ sail npm install
 ```
 
 Build frontend
 
 ```console
-$ sail npm run build
+ sail npm run build
 ```
 
 Seeded database
 
 ```console
-$ sail artisan db:seed
+ sail artisan db:seed
 ```
 
 
 Running the scheduler
 
 ```console
-$ sail artisan schedule:work
+ sail artisan schedule:work
 ```
 
+  
