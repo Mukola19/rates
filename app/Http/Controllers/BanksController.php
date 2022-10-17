@@ -25,20 +25,20 @@ class BanksController extends Controller
         $viewBanks = [];
 
         foreach ($banks as $bank) {
-            $viewcCurrenceis = [];
+            $viewRates = [];
             foreach ($currenceis as  $currency) {
                 $rate = $bank->rates()
                     ->where('currency_id', $currency->id)
                     ->orderby('created_at', 'desc')
                     ->first();
 
-                $viewcCurrenceis[] = $rate;
+                $viewRates[$currency->code] = $rate;
             }
-            $viewBanks[] = $viewcCurrenceis;
+            $bank->rates = $viewRates;
+            $viewBanks[] = $bank;
         }
 
-
-            return view('home', [
+        return view('home', [
             'banks' => $viewBanks,
             'currenceis' => $currenceis
         ]);
@@ -59,6 +59,8 @@ class BanksController extends Controller
         $currencys = Currency::all();
 
         $ratesByDate = [];
+
+
 
         // selecting time_period 
 
@@ -105,7 +107,7 @@ class BanksController extends Controller
             'bank' => $bank,
             'ratesByDate' => $ratesByDate,
             'currencys' => $currencys,
-            'currencieUpdatedBy' => reset($actualRates)->created_at
+            'currencieUpdatedBy' => reset($actualRates)?->created_at
         ]);
     }
 
@@ -183,8 +185,4 @@ class BanksController extends Controller
         }
         return $actualRates;
     }
-
-
-
-   
 }

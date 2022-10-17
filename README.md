@@ -21,7 +21,7 @@ $ sail up -d
 Application of migrations
 
 ```console
-$ sail artisan migration
+$ sail artisan migrate
 ```
 
 Installing all dependencies node
@@ -36,14 +36,16 @@ Build frontend
 $ sail npm run build
 ```
 
+Seeded database
+
+```console
+$ sail artisan db:seed
+```
+
+
 Running the scheduler
 
 ```console
 $ sail artisan schedule:work
 ```
 
-Seeded database
-
-```console
-$ sail artisan db:seed
-```

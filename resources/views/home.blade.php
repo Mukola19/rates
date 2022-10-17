@@ -22,18 +22,24 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($banks as $rates)
+            @foreach ($banks as $bank)
                 <tr>
                     <th scope="row">
                         <div>
-                            <a href="{{ route('getBankById', $rates[0]->bank->id) }}"
-                                class="text-decoration-none ">{{ $rates[0]->bank->display_name }}</a>
-                            <small>Станом на {{ $carbon->parse($rates[0]->created_at)->format('H:i') }}</small>
+                            <a href="{{ route('getBankById', $bank->id) }}"
+                                class="text-decoration-none ">{{ $bank->display_name }}</a>
+                            <small>Станом на
+                                {{ $carbon->parse(array_values($bank->rates)[0]?->created_at || '')->format('H:i') }}</small>
                         </div>
                     </th>
-                    @foreach ($rates as $rate)
-                        <th scope="row">{{ $rate->purchase }} {{ $rate->sale }}
-                        </th>
+
+                    @foreach ($bank->rates as $rate)
+                        @if ($rate)
+                            <th scope="row">{{ $rate?->purchase }} {{ $rate?->sale }}
+                            </th>
+                        @else
+                            <td>-</td>
+                        @endif
                     @endforeach
                 </tr>
             @endforeach

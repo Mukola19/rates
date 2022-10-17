@@ -33,8 +33,10 @@ class RateSeeder extends Seeder
             DB::table('rates')->insert([
                 'sale' => rand(35, 45) + rand(0, 10) / 10,
                 'purchase' => rand(35, 45) + rand(0, 10) / 10,
-                'bank_id' => 1,
-                'currency_id' => 1,
+                'bank_id' => rand(1, 3),
+                'currency_id' => rand(1, 2),
+                'created_at' => $date,
+                'updated_at' => $date,
             ]);
         }
     }

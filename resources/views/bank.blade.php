@@ -10,6 +10,8 @@
 <div class="d-flex justify-content-between mt-3">
     {{-- table of rates --}}
     <div class="card" style="width: 44rem">
+
+
         <div class="p-2">
             <table class="table">
                 <thead>
@@ -24,15 +26,20 @@
                 <tbody>
                     @foreach ($actualRates as $rate)
                         <tr>
-                            <th scope="row">{{ $rate->currency->name }} </th>
-                            <th scope="row">{{ $rate->currency->code }} </th>
-                            <th scope="row">{{ $rate->purchase }} </th>
-                            <th scope="row">{{ $rate->sale }}</th>
+                            @isset($rate)
+                                <th scope="row">{{ $rate->currency->name }} </th>
+                                <th scope="row">{{ $rate->currency->code }} </th>
+                                <th scope="row">{{ $rate->purchase }} </th>
+                                <th scope="row">{{ $rate->sale }}</th>
+                            @endisset
                         </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
+
+
+
 
     </div>
     {{-- rate history table --}}
