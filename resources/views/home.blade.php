@@ -29,7 +29,7 @@
                             <a href="{{ route('getBankById', $bank->id) }}"
                                 class="text-decoration-none ">{{ $bank->display_name }}</a>
                             <small>Станом на
-                                {{ $carbon->parse(array_values($bank->rates)[0]?->created_at || '')->format('H:i') }}</small>
+                                {{ $carbon->parse(array_values($bank->rates)[0]->created_at ?? '')->format('H:i') }}</small>
                         </div>
                     </th>
 
